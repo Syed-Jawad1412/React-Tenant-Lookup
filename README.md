@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# React Tenant Lookup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend repository for a Microsoft Entra tenant lookup project, intended to work with the [Express Tenant Lookup API](https://github.com/Syed-Jawad1412/Express-Tenant-Lookup).
 
-## Available Scripts
+The project is described as supporting domain-to-tenant ID lookup, bulk lookup and CSV export. The current repository contains the React package configuration and dependency lockfile, but the application source is missing, so these interface features cannot yet be verified from this checkout.
 
-In the project directory, you can run:
+## Technology stack
 
-### `npm start`
+- React and React DOM
+- Create React App (`react-scripts`)
+- React Testing Library
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+See `package.json` and `package-lock.json` for the recorded dependency versions.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Repository status
 
-### `npm test`
+The `src/` and `public/` folders are not currently committed. This checkout is incomplete and cannot start or build the frontend until the original application files are restored.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Do not treat generated placeholder components as the original implementation. Restore the actual source, including `src/index.*`, the app components and `public/index.html`, then check any API configuration against the backend.
 
-### `npm run build`
+## Available scripts
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+After restoring the missing source and reviewing compatibility with a supported Node.js release:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```sh
+npm ci
+npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Other scripts declared in the package configuration:
 
-### `npm run eject`
+```sh
+npm test
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`npm start` is the Create React App development command. `npm run build` creates a production bundle when the required source files are present. No passing build or test result is claimed for the incomplete checkout.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Backend integration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The associated backend provides:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- `GET /api/tenant-smart?domain=example.com`
+- `POST /api/tenant-bulk` with a JSON `domains` array
 
-## Learn More
+It listens on port `5000` by default. The frontend API URL must be confirmed from the restored source. Backend lookup results may use a guessed `.onmicrosoft.com` fallback; display and validate the resolved domain when implementing the interface.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Next steps
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Restore the original `src/` and `public/` folders.
+2. Verify single and bulk lookup flows against the backend.
+3. Confirm CSV export and document the actual user interface.
+4. Add screenshots, test instructions and a live demo link when available.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+No project license file is currently included. Confirm licensing before redistributing the application.
